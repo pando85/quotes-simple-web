@@ -30,12 +30,11 @@ async def setup_db(app):
     await load_db(app, 'data.json')
 
 
-@asyncio.coroutine
-def author_handler(request):
+async def author_handler(request):
     db = request.app['db']
     author = request.match_info['author']
     pipeline = [{'$match': {'$text': {'$search': author}}}]
-    quote_json = yield from get_random_element(db.quotes, pipeline)
+    quote_json = await get_random_element(db.quotes, pipeline)
     return aiohttp.web.Response(body=json_dump(quote_json), content_type='application/json')
 
 
@@ -45,19 +44,17 @@ def json_dump(response_json):
     return json.dumps(response_json, ensure_ascii=False)
 
 
-@asyncio.coroutine
-def random_handler(request):
+async def random_handler(request):
     db = request.app['db']
-    quote_json = yield from get_random_element(db.quotes)
+    quote_json = await get_random_element(db.quotes)
     return aiohttp.web.Response(body=json_dump(quote_json), content_type='application/json')
 
 
-@asyncio.coroutine
-def get_random_element(collection, pipeline=[]):
+async def get_random_element(collection, pipeline=[]):
     random_element = {'$sample': {'size': 1}}
     pipeline.append(random_element)
     cursor = collection.aggregate(pipeline)
-    while (yield from cursor.fetch_next):
+    while (await cursor.fetch_next):
         return cursor.next_object()
     raise aiohttp.web.HTTPNotFound()
 
