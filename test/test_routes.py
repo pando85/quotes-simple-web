@@ -1,0 +1,38 @@
+from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop
+import json
+import os
+import unittest
+
+from quotes.app import get_app
+from quotes.db import load_db, mongo_connection
+
+
+async def setup_db_test(app):
+    await mongo_connection(app)
+    current_file_path = os.path.dirname(os.path.realpath(__file__))
+    test_data_path = os.path.join(current_file_path, 'data.json')
+    await load_db(app, test_data_path)
+
+
+class RoutesTests(AioHTTPTestCase):
+
+    async def get_application(self):
+        return get_app(setup_db_test)
+
+    @unittest_run_loop
+    async def test_random_handler(self, url="/quotes/random"):
+        request = await self.client.request("GET", url)
+        assert request.status == 200
+        quote = await request.json()
+        assert ('author' and 'quote') in quote
+
+    def test_get_author_random_handler(self):
+        self.test_random_handler("/quotes/random/jamie%20zawinski")
+
+    @unittest_run_loop
+    async def test_fail_author_random_handler(self):
+        request = await self.client.request("GET", "/quotes/random/failauthorsearch")
+        assert request.status == 404
+
+if __name__ == '__main__':
+    unittest.main()
