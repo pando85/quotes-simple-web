@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pando85/quotes-simple-web.svg?branch=master)](https://travis-ci.org/pando85/quotes-simple-web)
+
 # quotes
 
 Simple web server for serving quotes of famous people.
@@ -27,7 +29,7 @@ docker exec -it mongo mongo --authenticationDatabase "admin" -u test -p test1234
 
 Run tests:
 ```bash
-python -m unittest test/main.py
+python -m unittest discover
 ```
 
 ### Production
