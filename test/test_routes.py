@@ -4,13 +4,14 @@ import os
 import unittest
 
 from quotes.app import get_app
+from quotes.config import QUOTES_FILE_PATH
 from quotes.db import load_db, mongo_connection
 
 
 async def setup_db_test(app):
     await mongo_connection(app)
     current_file_path = os.path.dirname(os.path.realpath(__file__))
-    test_data_path = os.path.join(current_file_path, 'data.json')
+    test_data_path = os.path.join(current_file_path, QUOTES_FILE_PATH)
     await load_db(app, test_data_path)
 
 

@@ -3,7 +3,7 @@ import json
 import motor.motor_asyncio
 import pymongo
 
-from quotes.config import MONGO_URI
+from quotes.config import MONGO_URI, QUOTES_FILE_PATH
 
 
 async def mongo_connection(app):
@@ -24,7 +24,7 @@ async def load_db(app, path):
 
 async def setup_db(app):
     await mongo_connection(app)
-    await load_db(app, 'data.json')
+    await load_db(app, QUOTES_FILE_PATH)
 
 
 async def get_random_element(collection, pipeline=[]):
