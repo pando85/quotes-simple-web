@@ -7,7 +7,7 @@ install:
 services: mongodb
 before_script:
 - sleep 15
-- mongo test --eval 'db.createUser({user:"test",pwd:"test1234",roles:["readWrite"]});'
+- mongo admin --eval 'db.createUser({user:"test",pwd:"test1234",roles:["readWrite"]});'
 script: python -m unittest discover
 after_success:
 - "curl https://registry.hub.docker.com/u/pando85/quotes-simple-web/trigger/$DOCKERHUB_TOKEN/"
