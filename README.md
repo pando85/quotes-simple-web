@@ -29,3 +29,7 @@ Run tests:
 ```bash
 python -m unittest test/main.py
 ```
+
+### Production
+
+**Warning**: aiohttp is [slower with gnunicorn](https://docs.aiohttp.org/en/stable/deployment.html#start-gunicorn). Basic `python -m quotes` execution is prefered.
