@@ -1,8 +1,8 @@
+import aiohttp.web
 import asyncio
 import json
 import pymongo
 
-from aiohttp import web
 from motor.motor_asyncio import AsyncIOMotorClient
 
 
@@ -26,7 +26,7 @@ def author_handler(request):
     author = request.match_info['author']
     pipeline = [{'$match': {'$text': {'$search': author}}}]
     quote_json = yield from get_random_element(db.quotes, pipeline)
-    return web.Response(body=json_dump(quote_json), content_type='application/json')
+    return aiohttp.web.Response(body=json_dump(quote_json), content_type='application/json')
 
 
 def json_dump(response_json):
@@ -39,7 +39,7 @@ def json_dump(response_json):
 def random_handler(request):
     db = request.app['db']
     quote_json = yield from get_random_element(db.quotes)
-    return web.Response(body=json_dump(quote_json), content_type='application/json')
+    return aiohttp.web.Response(body=json_dump(quote_json), content_type='application/json')
 
 
 @asyncio.coroutine
@@ -49,14 +49,14 @@ def get_random_element(collection, pipeline=[]):
     cursor = collection.aggregate(pipeline)
     while (yield from cursor.fetch_next):
         return cursor.next_object()
-    return None
+    raise aiohttp.web.HTTPNotFound()
 
 
 def main():
     loop = asyncio.get_event_loop()
     db = loop.run_until_complete(setup_db())
-    app = web.Application()
+    app = aiohttp.web.Application()
     app['db'] = db
     app.router.add_get('/author/{author}', author_handler)
     app.router.add_get('/random', random_handler)
-    web.run_app(app)
+    aiohttp.web.run_app(app)
