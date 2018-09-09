@@ -9,21 +9,25 @@ from motor.motor_asyncio import AsyncIOMotorClient
 MONGO_URI = 'mongodb://test:test1234@localhost:27017'
 
 
-async def setup_db(app):
+async def mongo_connection(app):
     mongo = AsyncIOMotorClient(MONGO_URI)
     async def cleanup(app):
         mongo.close()
     app.on_cleanup.append(cleanup)
     app['db'] = mongo['test']
-    await load_db(app)
 
 
-async def load_db(app):
+async def load_db(app, path):
     await app['db'].quotes.drop()
-    with open('data.json') as f:
+    with open(path) as f:
         data = json.load(f)
     await app['db'].quotes.insert_many(data)
     await app['db'].quotes.create_index([('author', pymongo.TEXT)])
+
+
+async def setup_db(app):
+    await mongo_connection(app)
+    await load_db(app, 'data.json')
 
 
 @asyncio.coroutine
@@ -58,9 +62,8 @@ def get_random_element(collection, pipeline=[]):
     raise aiohttp.web.HTTPNotFound()
 
 
-def get_app():
-    loop = asyncio.get_event_loop()
-    app = aiohttp.web.Application(loop=loop)
+def get_app(setup_db):
+    app = aiohttp.web.Application()
     app.on_startup.append(setup_db)
     app.router.add_get('/quotes/random', random_handler)
     app.router.add_get('/quotes/random/{author}', author_handler)
@@ -68,5 +71,5 @@ def get_app():
 
 
 def main():
-    app = get_app()
+    app = get_app(setup_db)
     aiohttp.web.run_app(app)
