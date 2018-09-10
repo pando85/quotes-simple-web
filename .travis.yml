@@ -10,7 +10,7 @@ before_script:
 - mongo admin --eval 'db.createUser({user:"test",pwd:"test1234",roles:["readWrite"]});'
 script: python -m unittest discover
 after_success:
-- "curl -H "Content-Type: application/json" --data '{"build": true}' -X POST https://registry.hub.docker.com/u/pando85/quotes-simple-web/trigger/$DOCKERHUB_TOKEN/"
+- curl -H "Content-Type: application/json" --data '{"build": true}' -X POST https://registry.hub.docker.com/u/pando85/quotes-simple-web/trigger/$DOCKERHUB_TOKEN/
 env:
   global:
   - secure: SfiY9uISI68XSyKxUUP/uWxM8fnDpEJ/XxcJqQdtNMEfxx2iE5chv0aaTpWel2+V5oCkwZXu33LKGvVRyVUJ46wGlhoGSGMk8H7J3fW2sHWQImmjdShFrZD9HM3FSJGs3ccev78OP6UBWCS68VFSIg8ZaFFhilswKBkduvfoaNfSP3gh4W2JjRmENiYaYcxsp1LacebcHYLCLQtZGatg94BPZiUqpag56aJungLwoXIE38sYfl27wpwX/GHJAReTW7QT1CBsU/RpFO0orTcPWQ5wu0KEKFo1IwxVpwoCa95BQNe9keLOsyt5t15AMZoYKHvs26Tks9k93VqjJpaC+r54Sfejbk1mLpE6Y6nNomKL1+qLRIDbNINpwBiMYiyvYows8ucCiOmHDA54uDMNwH9llGL0+li/rKbvsR08kDnKSgRB0c28DL1NVaL8qmOZYw9ihbpTeJGyJW5/Nxkkc3SsXoJ0FpHjsgr3PEbo4utScKgma9o/rJQQNShcy3my+y5lUMIDi81SkL0oH7u2FBJ9hONapG46YqHaJvzTCA9GcycZI3Ld3Y7DYzcw8usgMVWF+hBExg+ntZbG2OzOgGjNaxd3Cz9NuSooN/SGuDn+Pz6xdyx+npESKogX4wpijsetgOd0tTZTibmH+Mpgy8rN1N+qAyzV443ygc4GjAg=
