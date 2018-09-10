@@ -18,9 +18,10 @@ async def add_audio_to_json(db, path):
     if not filenames:
         return
     search_queries = map(lambda x: '.'.join(x.split('.')[0:-1]), filenames)
-    all_quotes_cursor = db.quotes.find({'author': 'Mariano Rajoy'}, {'quote': 1})
 
     if IS_CREATE_EMPTY_AUDIO_FILES:
+        # for author in authors
+        all_quotes_cursor = db.quotes.find({'author': 'Mariano Rajoy'}, {'quote': 1})
         while(await all_quotes_cursor.fetch_next):
             quote = all_quotes_cursor.next_object()
             try:
@@ -30,7 +31,6 @@ async def add_audio_to_json(db, path):
                 continue
 
     for path in search_queries:
-
         await db.quotes.update_many(
             {'quote': path},
             {'$set': {'audio_path': f'{AUDIO_DIR_PATH}/{path}.mp3'}})
