@@ -35,4 +35,4 @@ async def get_random_element(collection, pipeline=[]):
     cursor = collection.aggregate(pipeline)
     while (await cursor.fetch_next):
         return cursor.next_object()
-    raise aiohttp.web.HTTPNotFound()
+    raise None
