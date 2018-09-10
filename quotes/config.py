@@ -8,3 +8,5 @@ MONGO_URI = os.environ.get('MONGO_URI', f'mongodb://{MONGO_USER}:{MONGO_PASSWORD
 DATA_PATH = os.environ.get('DATA_PATH', 'data')
 QUOTES_FILE_PATH = os.environ.get('QUOTES_FILE_PATH', f'{DATA_PATH}/quotes.json')
 AUDIO_DIR_PATH = os.environ.get('AUDIO_DIR_PATH', f'{DATA_PATH}/audio')
+
+IS_CREATE_EMPTY_AUDIO_FILES = os.environ.get('IS_CREATE_EMPTY_AUDIO_FILES', False)
