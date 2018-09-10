@@ -3,7 +3,8 @@ import json
 import motor.motor_asyncio
 import pymongo
 
-from quotes.config import MONGO_URI, QUOTES_FILE_PATH
+from quotes.config import AUDIO_DIR_PATH, MONGO_URI, QUOTES_FILE_PATH
+from quotes.utils import add_audio_to_json
 
 
 async def mongo_connection(app):
@@ -25,6 +26,7 @@ async def load_db(app, path):
 async def setup_db(app):
     await mongo_connection(app)
     await load_db(app, QUOTES_FILE_PATH)
+    await add_audio_to_json(app['db'], AUDIO_DIR_PATH)
 
 
 async def get_random_element(collection, pipeline=[]):
