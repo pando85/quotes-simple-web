@@ -10,7 +10,7 @@ from quotes.utils import add_audio_to_json
 async def mongo_connection(app):
     mongo = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
     async def _cleanup(app):
-        await mongo.close()
+        mongo.close()
     app.on_cleanup.append(_cleanup)
     app['db'] = mongo['test']
 
@@ -35,4 +35,4 @@ async def get_random_element(collection, pipeline=[]):
     cursor = collection.aggregate(pipeline)
     while (await cursor.fetch_next):
         return cursor.next_object()
-    raise None
+    return None
