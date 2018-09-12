@@ -31,7 +31,7 @@ class RoutesTests(AioHTTPTestCase):
         assert ('author' and 'quote') in quote
 
     def test_get_author_random_handler(self):
-        self.test_random_handler("/quotes/random/jamie%20zawinski")
+        self.test_random_handler("/quotes/random/dennis%20ritchie")
 
     @unittest_run_loop
     async def test_fail_author_random_handler(self):
