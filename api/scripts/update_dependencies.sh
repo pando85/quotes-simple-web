@@ -2,14 +2,14 @@
 set -e
 
 update_packages(){
-    packages=$(pip list --outdated --format=freeze | \
+    packages=$(pip list --outdated --local --format=freeze | \
         grep -v '^\-e' | cut -d = -f 1  )
 
     for package in $(echo $packages);
     do
         pip install -U $package;
     done;
-}
+};
 
 update_requirements(){
     temp_file=$(mktemp)
