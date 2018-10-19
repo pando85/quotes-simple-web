@@ -25,7 +25,7 @@ update_requirements(){
 echo Update packages
 update_packages
 
-echo Pass unit tests
+echo Run unit tests
 bash scripts/unit_tests.sh
 
 update_requirements requirements.txt
