@@ -3,7 +3,7 @@
 language: python
 python:
   - '3.6'
-services: mongodb
+services: docker
 
 env:
   global:
@@ -23,13 +23,13 @@ jobs:
         - cd api
       install:
         - pip install -r requirements.txt
-      before_script:
-        - sleep 15
-        - mongo admin --eval 'db.createUser({user:"test",pwd:"test1234",roles:["readWrite"]});'
-      script: python -m unittest discover
+      script:
+        - bash scripts/unit_tests.sh
     - stage: update-dependencies
       before_script:
         - cd api
-      script: bash scripts/update_dependencies.sh
+      script:
+        - bash scripts/update_dependencies.sh
     - stage: docker-build
-      script: "curl -H 'Content-Type: application/json' --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/pando85/quotes-simple-web/trigger/$DOCKERHUB_TOKEN/"
+      script:
+        - "curl -H 'Content-Type: application/json' --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/pando85/quotes-simple-web/trigger/$DOCKERHUB_TOKEN/"

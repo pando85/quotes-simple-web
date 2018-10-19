@@ -29,7 +29,7 @@ docker exec -it mongo mongo --authenticationDatabase "admin" -u test -p test1234
 
 Run tests:
 ```bash
-python -m unittest discover
+bash scripts/unit_tests.sh
 ```
 
 ### Production
