@@ -1,9 +1,19 @@
 #!/bin/bash
 set -e
 
+update_packages(){
+    packages=$(pip list --outdated --format=freeze | \
+        grep -v '^\-e' | cut -d = -f 1  )
+
+    for package in $(echo $packages);
+    do
+        pip install -U $package;
+    done;
+}
+
 update_requirements(){
     temp_file=$(mktemp)
-    requirements_file=requirements.txt
+    requirements_file=${1:=requirements.txt}
     echo Update $requirements_file
     for i in $(cat $requirements_file);
     do
@@ -13,11 +23,9 @@ update_requirements(){
 };
 
 echo Update packages
-pip list --outdated --format=freeze | \
-    grep -v '^\-e' | cut -d = -f 1  | \
-    xargs -n1 pip install -U
+update_packages
 
 echo Pass unit tests
 bash scripts/unit_tests.sh
 
-update_requirements
+update_requirements requirements.txt
