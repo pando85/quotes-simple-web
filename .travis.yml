@@ -26,10 +26,14 @@ jobs:
       script:
         - bash scripts/unit_tests.sh
     - stage: update-dependencies
-      before_script:
+      before_install:
         - cd api
+      install:
+        - pip install -r requirements.txt
+        - bash scripts/update_dependencies.sh
       script:
         - bash scripts/update_dependencies.sh
     - stage: docker-build
+      install: skip
       script:
         - "curl -H 'Content-Type: application/json' --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/pando85/quotes-simple-web/trigger/$DOCKERHUB_TOKEN/"
