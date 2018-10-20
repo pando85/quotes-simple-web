@@ -17,7 +17,7 @@ update_requirements(){
     echo Update $requirements_file
     for i in $(cat $requirements_file);
     do
-        pip freeze | egrep ^$(echo $i | cut -d= -f1) >> $temp_file;
+        pip freeze --local | egrep ^$(echo $i | cut -d= -f1) >> $temp_file;
     done;
     cp $temp_file $requirements_file;
 };
