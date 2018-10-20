@@ -8,9 +8,9 @@ services: docker
 stages:
   - test
   - name: update-dependencies
-    if: branch = master
+    if: branch = master AND type != pull_request
   - name: docker-build
-    if: branch = master
+    if: branch = master AND type != pull_request
 
 jobs:
   include:
