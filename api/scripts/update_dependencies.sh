@@ -17,7 +17,8 @@ update_requirements(){
     echo Update $requirements_file
     for i in $(cat $requirements_file);
     do
-        pip freeze --local | egrep ^$(echo $i | cut -d= -f1) >> $temp_file;
+        package_name=$(echo $i | cut -d= -f1)
+        pip freeze --local | egrep ^${package_name} | grep ${package_name}= >> $temp_file;
     done;
     cp $temp_file $requirements_file;
 };
