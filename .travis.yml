@@ -29,12 +29,12 @@ jobs:
         - bash scripts/update_dependencies.sh
       script:
         - bash scripts/update_dependencies.sh
-      after_script:
+      after_success:
         - git config user.name "tracis-ci"
         - git config user.email "travis-ci@travis-ci.org"
         - git add requirements.txt
         - git commit -m 'Update requirements.txt'
-        - git push "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG" $TRAVIS_BRANCH
+        - git push "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG" HEAD:$TRAVIS_BRANCH
       env:
         - secure: "L60kLhxygNBe5vrxAzj7k2UJRuhs7x0vOceuF8NNphWGCFG2V6kqMyJn83tBDHhnGAGS1/yVX8EFwo0HwuhDq1zwX6j8LZKiQKU5p3zREI2KpPfcJnqwF7SC4bWsq6EYu+r2JT/Sa9ffT4YojWW+heNiPqCIU9wm0ndI5QEZckb9B43ycQTsK/BVz2UbnTiJMS0CdQGlqn96/jJpZTeQ0nAtMiiLvNneV0q15e5kam0bDeJLLxn7RhZ7pq773BoZFDZJ46ZckHt8ofUjmaKiwTa/w4Rzzz28vymWTPUgbgaLgy8W7r4ZgmuFCpvl1d7krIfYoDaZheggrvlY868i+jQ/8tW9FMu7dt6f6MCqdc+xPhN6Jp0ktal5aif0aqXNc2IFV12gLZFx5gFh8DVW85xYRkRWGgg3S7HzgUzHKnH5wIXrLGkttcnuV+RMvr+s1WNtjvQI6vrccTnns1AxUhcnD7uJR5YwkQlR33YcZ4CYZfopamEovunsZLdxQGu63v0+Kyasc+4K3eQiab91ABaDYAmwzLGv59keL6+8Nx15tLeUp2g/Ze5bGZyd8Im1KfVFxK4JJ/Ez1Ydpa4+Oj5q0nKB4kaAkFeTlAx5sZa15B08yMy8YA+KUHB7n1T60xIu3uMMo2XlSz5mdeaC+/UKCoVNbxqkSbcerwZqi5cs="
 
