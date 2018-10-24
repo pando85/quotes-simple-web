@@ -16,7 +16,11 @@ init_db
 
 echo Runing linter
 python -m pycodestyle .
+
 echo Runing tests
-python -m unittest discover
+coverage run -m unittest discover
+
+echo Coverage report
+coverage report -m
 
 destroy_db
