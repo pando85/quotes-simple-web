@@ -1,6 +1,6 @@
 import aiohttp.web
 
-from quotes.routes import author_handler, random_handler
+from quotes.handlers import author_handler, random_handler
 
 
 def get_app(setup_db):
