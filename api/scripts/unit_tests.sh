@@ -14,6 +14,8 @@ init_db(){
 
 init_db
 
+echo Runing linter
+python -m pycodestyle .
 echo Runing tests
 python -m unittest discover
 

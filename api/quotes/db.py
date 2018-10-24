@@ -9,6 +9,7 @@ from quotes.utils import add_audio_to_json
 
 async def mongo_connection(app):
     mongo = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
+
     async def _cleanup(app):
         mongo.close()
     app.on_cleanup.append(_cleanup)

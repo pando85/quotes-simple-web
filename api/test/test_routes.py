@@ -38,5 +38,6 @@ class RoutesTests(AioHTTPTestCase):
         request = await self.client.request("GET", "/quotes/random/failauthorsearch")
         assert request.status == 404
 
+
 if __name__ == '__main__':
     unittest.main()

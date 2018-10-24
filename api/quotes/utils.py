@@ -12,6 +12,7 @@ def _list_files_in_directory(path):
 def _create_file(path):
     return open(path, 'a').close()
 
+
 async def add_audio_to_json(db, path):
     files = _list_files_in_directory(AUDIO_DIR_PATH)
     filenames = map(os.path.basename, files)
