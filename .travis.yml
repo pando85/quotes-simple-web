@@ -23,14 +23,14 @@ jobs:
       before_install:
         - cd api
       install:
-        - pip install -r requirements.txt
+        - pip install -r requirements_test.txt
       script:
         - bash scripts/unit_tests.sh
     - stage: update-dependencies
       before_install:
         - cd api
       install:
-        - pip install -r requirements.txt
+        - pip install -r requirements_test.txt
         - bash scripts/update_dependencies.sh
       script:
         - bash scripts/update_dependencies.sh
