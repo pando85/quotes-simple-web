@@ -27,6 +27,6 @@ echo Update packages
 update_packages
 
 echo Run unit tests
-bash scripts/unit_tests.sh
+make test
 
 update_requirements requirements.txt
