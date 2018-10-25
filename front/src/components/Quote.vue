@@ -20,7 +20,7 @@
 							<use xlink:href="#icon-twitter"/>
 						</svg>
 					</a>
-					<button type="button" class="btnIcon btnIcon--primary" title="New quote">
+					<button type="button" v-on:click="getNewQuote" class="btnIcon btnIcon--primary" title="New quote">
 						<svg class="btnIcon__icon">
 							<use xlink:href="#icon-quote"/>
 						</svg>
@@ -40,21 +40,30 @@
 </template>
 
 <script lang="ts">
-import store from '@/store.ts';
+import { Action, Mutation} from 'vuex-module-decorators';
 import { Component, Prop, Vue } from 'vue-property-decorator';
+
+import store from '@/store.ts';
 
 @Component
 export default class Quote extends Vue {
   public store!: object;
 
   get quote() {
-      return this.$store.state.quote;
+    return this.$store.state.quote;
   }
 
   get twitterUrl() {
     return `https://twitter.com/intent/tweet?text="${this.quote.quote}" — ${this.quote.author}`;
   }
 
+  private mounted() {
+    this.$store.dispatch('getRandomQuote');
+  }
+  // Component methods can be declared as instance methods
+  private getNewQuote(event: Event): void {
+    this.$store.dispatch('getRandomQuote');
+  }
 }
 </script>
 
