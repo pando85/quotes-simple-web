@@ -1,6 +1,6 @@
 .PHONY: help requirements requirements_test destroy_db init_db lint test run
 
-VENV_BASE ?= quotes-simple-web
+VENV_BASE ?= .venv/quotes-simple-web
 VENV_ACTIVATE := $(VENV_BASE)/bin/activate
 PYTHON := ${VENV_BASE}/bin/python3
 
@@ -36,7 +36,7 @@ init_db: destroy_db
 lint:	## run pycodestyle
 lint: requirements_test
 	@echo Running linter
-	@${PYTHON} -m pycodestyle .
+	@${PYTHON} -m pycodestyle quotes test
 
 test:	## run tests and show report
 test: lint init_db
