@@ -25,7 +25,7 @@ jobs:
       install:
         - pip install -r requirements_test.txt
       script:
-        - bash scripts/unit_tests.sh
+        - make test
     - stage: update-dependencies
       before_install:
         - cd api
