@@ -14,7 +14,7 @@ export default class Api extends Vue {
   private async mounted() {
     const response = await axios.get(`${this.apiUrl}/quotes/random`);
 
-    return this.$store.state.quote = response.data;
+    this.$store.state.quote = response.data;
   }
 }
 </script>
