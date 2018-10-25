@@ -60,8 +60,8 @@ export default class Quote extends Vue {
   private mounted() {
     this.$store.dispatch('getRandomQuote');
   }
-  // Component methods can be declared as instance methods
-  private getNewQuote(event: Event): void {
+
+private getNewQuote(event: Event): void {
     this.$store.dispatch('getRandomQuote');
   }
 }
@@ -77,24 +77,6 @@ export default class Quote extends Vue {
 	box-sizing: border-box;
 }
 
-body {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#96fbc4), to(#f9f586));
-	background-image: linear-gradient(#96fbc4, #f9f586);
-}
-
-main {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	min-height: 100vh;
-	padding: 0.5rem;
-}
 
 button {
 	overflow: visible;
