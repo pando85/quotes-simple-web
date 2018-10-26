@@ -45,5 +45,5 @@ test: lint init_db
 	@${PYTHON} -m coverage report -m
 
 run:	## run project
-run: requirements
+run: requirements init_db
 	${PYTHON} -m quotes
