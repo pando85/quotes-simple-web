@@ -1,4 +1,5 @@
 aiohttp==3.4.4
+aiohttp-cors==0.7.0
 async-timeout==3.0.1
 attrs==18.2.0
 cchardet==2.1.4
