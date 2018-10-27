@@ -11,7 +11,8 @@ branches:
   - master
 
 stages:
-  - test
+  - test backend
+  - test front
   - name: update-dependencies
     if: branch = master AND type != pull_request
   - name: docker-build
@@ -19,13 +20,21 @@ stages:
 
 jobs:
   include:
-    - stage: test
+    - stage: test backend
       before_install:
         - cd api
       install:
         - pip install -r requirements_test.txt
       script:
         - make test
+    - stage: test front
+      before_install:
+        - cd front
+      install:
+        - npm install
+      script:
+        - npm run lint
+        - npm run test:unit
     - stage: update-dependencies
       before_install:
         - cd api
