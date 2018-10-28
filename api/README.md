@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/pando85/quotes-simple-web.svg?branch=master)](https://travis-ci.org/pando85/quotes-simple-web)
-
 # quotes
 
-Simple web server for serving quotes of famous people.
+Simple API for serving quotes of famous people.
 
 ## Dev
 

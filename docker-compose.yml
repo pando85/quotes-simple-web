@@ -1,0 +1,32 @@
+version: '3'
+services:
+  frontend:
+    image: pando85/quotes-simple-web:latest-frontend
+    restart: unless-stopped
+    environment:
+      - VUE_APP_API_URL=http://localhost:8080
+    ports:
+      - "80:80"
+
+  backend:
+    image: pando85/quotes-simple-web:latest-backend
+    restart: unless-stopped
+    environment:
+      - CORS_ALLOW_ORIGIN=http://localhost
+      - MONGO_URI=mongodb://test:test1234@database:27017
+      - QUOTES_FILE_PATH=/data/quotes.json
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api/data/quotes.json:/data/quotes.json:ro
+    links:
+      - database
+
+  database:
+    image: mongo:4.1-xenial
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=test
+      - MONGO_INITDB_ROOT_PASSWORD=test1234
+    expose:
+      - "27017"
