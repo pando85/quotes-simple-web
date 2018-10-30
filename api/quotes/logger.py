@@ -9,7 +9,7 @@ LOG_LEVEL_NAME = logging.getLevelName(LOG_LEVEL)
 logger = logging.getLogger(__name__)
 logger_handler = logging.StreamHandler(sys.stdout)
 logger_handler.setLevel(LOG_LEVEL_NAME)
-logger_handler.setFormatter(logging.Formatter('-- %(levelname)s -- %(message)s'))
+logger_handler.setFormatter(logging.Formatter('-- %(levelname)s -- %(filename)s -- %(message)s'))
 logger.addHandler(logger_handler)
 logger.setLevel(LOG_LEVEL)
 
