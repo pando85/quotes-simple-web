@@ -5,22 +5,27 @@ import pymongo
 
 from quotes.config import AUDIO_DIR_PATH, MONGO_URI, QUOTES_FILE_PATH
 from quotes.utils import add_audio_to_json
+from quotes.logger import logger
 
 
 async def mongo_connection(app):
     mongo = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
 
     async def _cleanup(app):
+        logger.debug('Close database connection')
         mongo.close()
     app.on_cleanup.append(_cleanup)
     app['db'] = mongo['test']
 
 
 async def load_db(app, path):
+    logger.debug('Remove database collection')
     await app['db'].quotes.drop()
     with open(path) as f:
         data = json.load(f)
+    logger.debug(f'Insert quotes from file `{path}`')
     await app['db'].quotes.insert_many(data)
+    logger.debug('Create index by author')
     await app['db'].quotes.create_index([('author', pymongo.TEXT)])
 
 

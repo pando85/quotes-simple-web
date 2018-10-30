@@ -3,6 +3,7 @@ import aiohttp.web
 
 from quotes.db import get_random_element
 from quotes.serializer import json_dump
+from quotes.logger import logger
 
 
 async def author_handler(request):
@@ -20,6 +21,7 @@ async def random_handler(request):
 
 
 def response(quote_json):
+    logger.debug(quote_json)
     if not quote_json:
         raise aiohttp.web.HTTPNotFound()
     return aiohttp.web.Response(body=json_dump(quote_json), content_type='application/json')
