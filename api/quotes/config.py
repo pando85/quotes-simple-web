@@ -12,3 +12,5 @@ AUDIO_DIR_PATH = os.environ.get('AUDIO_DIR_PATH', f'{DATA_PATH}/audio')
 IS_CREATE_EMPTY_AUDIO_FILES = os.environ.get('IS_CREATE_EMPTY_AUDIO_FILES', False)
 
 CORS_ALLOW_ORIGIN = os.environ.get('CORS_ALLOW_ORIGIN', '*')
+
+LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')
