@@ -49,6 +49,8 @@ jobs:
       before_install:
         - cd api
       install:
+        - skip
+      script:
         - docker build .
     - stage: "[frontend] unit test"
       before_install:
@@ -62,6 +64,8 @@ jobs:
       before_install:
         - cd front
       install:
+        - skip
+      script:
         - docker build .
     - stage: dockerhub-build
       install: skip
