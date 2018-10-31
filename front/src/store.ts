@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    apiUrl: 'http://localhost:8080',
+    apiUrl: process.env.VUE_APP_API_URL || 'http://localhost:8080',
     quote: {},
 
   },
@@ -17,7 +17,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getRandomQuote(context) {
-      const response = await axios.get(`http://localhost:8080/quotes/random`);
+      const response = await axios.get(`${context.state.apiUrl}/quotes/random`);
       context.commit('setCurrentQuote', response.data);
     },
   },

@@ -40,7 +40,6 @@
 </template>
 
 <script lang="ts">
-import { Action, Mutation} from 'vuex-module-decorators';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import store from '@/store.ts';

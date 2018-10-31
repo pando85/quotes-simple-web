@@ -13,11 +13,11 @@ describe('Quote.vue', () => {
 
   beforeEach(() => {
     actions = {
-      getRandomQuote: jest.fn()
+      getRandomQuote: jest.fn(),
     };
     store = new Vuex.Store({
       state: {
-        quote: quote
+        quote,
       },
       actions,
     });

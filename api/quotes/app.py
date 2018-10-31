@@ -1,7 +1,9 @@
 import aiohttp.web
 import aiohttp_cors
+import os
 
 from quotes.handlers import author_handler, random_handler
+from quotes.config import CORS_ALLOW_ORIGIN
 
 
 def get_app(setup_db):
@@ -13,7 +15,7 @@ def get_app(setup_db):
     ])
 
     cors = aiohttp_cors.setup(app, defaults={
-        "http://localhost:8081": aiohttp_cors.ResourceOptions(),
+        CORS_ALLOW_ORIGIN: aiohttp_cors.ResourceOptions(),
     })
     [cors.add(route) for route in list(app.router.routes())]
 
