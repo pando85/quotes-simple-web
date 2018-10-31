@@ -1,137 +1,137 @@
 :before,
 :after {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 
 button {
-    overflow: visible;
+  overflow: visible;
 }
 
 .btnIcon {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    border-style: none;
-    font-size: 2em;
-    color: currentColor;
-    background-color: transparent;
-    cursor: pointer;
-    -webkit-transition: 0.2s;
-    transition: 0.2s;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-style: none;
+  font-size: 2em;
+  color: currentColor;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .btnIcon__icon {
-    display: block;
-    width: 100%;
-    height: 100%;
-    fill: currentcolor;
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentcolor;
 }
 
 .btnIcon--primary {
-    color: #000;
+  color: #000;
 }
 
 .btnIcon--primary:hover,
 .btnIcon--primary:focus {
-    color: #2196f3;
+  color: #2196f3;
 }
 
 .btnIcon--twitter {
-    color: #14171a;
+  color: #14171a;
 }
 
 .btnIcon--twitter:hover,
 .btnIcon--twitter:focus {
-    color: #1da1f2;
+  color: #1da1f2;
 }
 
 .quoteBox {
-    max-width: 64rem;
-    width: 95%;
-    font-size: inherit;
+  max-width: 64rem;
+  width: 95%;
+  font-size: inherit;
 }
 
-.quoteBox__text {
-    font-weight: bold;
-    font-size: 2em;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.25);
-    text-align: left;
+.text {
+  font-weight: bold;
+  font-size: 2em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.25);
+  text-align: left;
 }
 
-.quoteBox__text:not(:empty) {
-    quotes: "“" "”";
+.text:not(:empty) {
+  quotes: "“" "”";
 }
 
-.quoteBox__text:not(:empty)::before {
-    content: open-quote;
+.text:not(:empty)::before {
+  content: open-quote;
 }
 
-.quoteBox__text:not(:empty)::after {
-    content: close-quote;
+.text:not(:empty)::after {
+  content: close-quote;
 }
 
-.quoteBox__footer {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin-top: 2em;
-    min-width: 20em;
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 2em;
+  min-width: 20em;
 }
 
-.quoteBox__footerCell--btnIcons .btnIcon + .btnIcon {
-    margin-left: 1em;
+.footerCell--btnIcons .btnIcon + .btnIcon {
+  margin-left: 1em;
 }
 
-.quoteBox__author {
-    text-align: right;
+.author {
+  text-align: right;
 }
 
-.quoteBox__author:not(:empty)::before {
-    content: "— ";
+.author:not(:empty)::before {
+  content: "— ";
 }
 
 @media screen and (max-width: 1024px) {
-    .quoteBox__text {
-        text-align: center;
-    }
+  .text {
+    text-align: center;
+  }
 
-    .quoteBox__footer {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-    }
+  .footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
 
-    .quoteBox__footerCell--author {
-        -ms-flex-item-align: end;
-        align-self: flex-end;
-        -webkit-box-ordinal-group: 0;
-        -ms-flex-order: -1;
-        order: -1;
-        margin-bottom: 2em;
-    }
+  .footerCell--author {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    -webkit-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+    margin-bottom: 2em;
+  }
 
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    -webkit-clip-path: inset(50%);
-    clip-path: inset(50%);
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  border: 0;
 }
