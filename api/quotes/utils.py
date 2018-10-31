@@ -1,10 +1,11 @@
 import os
 import pathlib
+from typing import List
 
 from quotes.config import AUDIO_DIR_PATH, IS_CREATE_EMPTY_AUDIO_FILES
 
 
-def _list_files_in_directory(path):
+def _list_files_in_directory(path: str) -> List[pathlib.Path]:
     p = pathlib.Path(path).glob('**/*')
     return [x for x in p if x.is_file()]
 

@@ -18,7 +18,7 @@ async def mongo_connection(app):
     app['db'] = mongo['test']
 
 
-async def load_db(app, path):
+async def load_db(app, path: str):
     logger.debug('Remove database collection')
     await app['db'].quotes.drop()
     with open(path) as f:
