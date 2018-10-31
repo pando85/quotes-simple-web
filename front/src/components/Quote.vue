@@ -155,6 +155,7 @@ button {
 	-ms-flex-align: center;
 	align-items: center;
 	margin-top: 2em;
+    min-width: 20em;
 }
 
 .quoteBox__footerCell--btnIcons .btnIcon + .btnIcon {
