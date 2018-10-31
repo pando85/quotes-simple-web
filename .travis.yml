@@ -11,31 +11,25 @@ branches:
   - master
 
 stages:
-  - test backend
-  - test front
-  - name: update-dependencies
+  - name: "[backend] unit tests"
+  - name: "[backend] test docker build"
+  - name: "[backend] update-dependencies"
     if: branch = master AND type != pull_request
-  - name: docker-build
+  - name: "[frontend] unit test"
+  - name: "[frontend] test docker build"
+  - name: dockerhub-build
     if: branch = master AND type != pull_request
 
 jobs:
   include:
-    - stage: test backend
+    - stage: "[backend] unit tests"
       before_install:
         - cd api
       install:
         - pip install -r requirements_test.txt
       script:
         - make test
-    - stage: test front
-      before_install:
-        - cd front
-      install:
-        - npm install
-      script:
-        - npm run lint
-        - npm run test:unit
-    - stage: update-dependencies
+    - stage: "[backend] update-dependencies"
       before_install:
         - cd api
       install:
@@ -51,8 +45,29 @@ jobs:
         - git push "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG" HEAD:$TRAVIS_BRANCH
       env:
         - secure: "L60kLhxygNBe5vrxAzj7k2UJRuhs7x0vOceuF8NNphWGCFG2V6kqMyJn83tBDHhnGAGS1/yVX8EFwo0HwuhDq1zwX6j8LZKiQKU5p3zREI2KpPfcJnqwF7SC4bWsq6EYu+r2JT/Sa9ffT4YojWW+heNiPqCIU9wm0ndI5QEZckb9B43ycQTsK/BVz2UbnTiJMS0CdQGlqn96/jJpZTeQ0nAtMiiLvNneV0q15e5kam0bDeJLLxn7RhZ7pq773BoZFDZJ46ZckHt8ofUjmaKiwTa/w4Rzzz28vymWTPUgbgaLgy8W7r4ZgmuFCpvl1d7krIfYoDaZheggrvlY868i+jQ/8tW9FMu7dt6f6MCqdc+xPhN6Jp0ktal5aif0aqXNc2IFV12gLZFx5gFh8DVW85xYRkRWGgg3S7HzgUzHKnH5wIXrLGkttcnuV+RMvr+s1WNtjvQI6vrccTnns1AxUhcnD7uJR5YwkQlR33YcZ4CYZfopamEovunsZLdxQGu63v0+Kyasc+4K3eQiab91ABaDYAmwzLGv59keL6+8Nx15tLeUp2g/Ze5bGZyd8Im1KfVFxK4JJ/Ez1Ydpa4+Oj5q0nKB4kaAkFeTlAx5sZa15B08yMy8YA+KUHB7n1T60xIu3uMMo2XlSz5mdeaC+/UKCoVNbxqkSbcerwZqi5cs="
-
-    - stage: docker-build
+    - stage: "[backend] test docker build"
+      before_install:
+        - cd api
+      install:
+        - skip
+      script:
+        - docker build .
+    - stage: "[frontend] unit test"
+      before_install:
+        - cd front
+      install:
+        - npm install
+      script:
+        - npm run lint
+        - npm run test:unit
+    - stage: "[frontend] test docker build"
+      before_install:
+        - cd front
+      install:
+        - skip
+      script:
+        - docker build .
+    - stage: dockerhub-build
       install: skip
       script:
         - "curl -H 'Content-Type: application/json' --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/pando85/quotes-simple-web/trigger/$DOCKERHUB_TOKEN/"
