@@ -129,6 +129,7 @@ button {
 	font-weight: bold;
 	font-size: 2em;
 	text-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.25);
+    text-align: left;
 }
 
 .quoteBox__text:not(:empty) {
@@ -170,6 +171,10 @@ button {
 }
 
 @media screen and (max-width: 1024px) {
+	.quoteBox__text {
+		text-align: center;
+	}
+
 	.quoteBox__footer {
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
