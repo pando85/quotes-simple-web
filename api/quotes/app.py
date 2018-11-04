@@ -1,12 +1,13 @@
 import aiohttp.web
 import aiohttp_cors
-import os
+from typing import Awaitable, Callable
 
 from quotes.handlers import author_handler, random_handler
 from quotes.config import CORS_ALLOW_ORIGIN
 
 
-def get_app(setup_db):
+def get_app(setup_db: Callable[[aiohttp.web.Application], Awaitable[None]]
+            ) -> aiohttp.web.Application:
     app = aiohttp.web.Application()
     app.on_startup.append(setup_db)
     app.add_routes([

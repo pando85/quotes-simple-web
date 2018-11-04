@@ -36,7 +36,7 @@ class RoutesTests(AioHTTPTestCase):
     @unittest_run_loop
     async def test_fail_author_random_handler(self):
         request = await self.client.request("GET", "/quotes/random/failauthorsearch")
-        assert request.status == 404
+        assert request.status == 500
 
 
 if __name__ == '__main__':

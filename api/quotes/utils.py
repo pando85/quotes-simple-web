@@ -3,6 +3,7 @@ import pathlib
 from typing import List
 
 from quotes.config import AUDIO_DIR_PATH, IS_CREATE_EMPTY_AUDIO_FILES
+from quotes.quote import Quote
 
 
 def _list_files_in_directory(path: str) -> List[pathlib.Path]:
@@ -10,8 +11,15 @@ def _list_files_in_directory(path: str) -> List[pathlib.Path]:
     return [x for x in p if x.is_file()]
 
 
-def _create_file(path):
+def _create_file(path: str) -> None:
     return open(path, 'a').close()
+
+
+def mongo_quote_to_quote(mongo_quote: dict) -> Quote:
+    quote_json = {'id': mongo_quote['_id'],
+                  'author': mongo_quote['author'],
+                  'quote': mongo_quote['quote']}
+    return Quote(**quote_json)
 
 
 async def add_audio_to_json(db, path):
