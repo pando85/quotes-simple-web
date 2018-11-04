@@ -15,18 +15,18 @@
       <p class="text">{{ quote.quote }}</p>
       <footer class="footer">
         <div class="footerCell footerCell--btnIcons">
-          <a :href="twitterUrl" class="tweet btnIcon btnIcon--twitter" title="Tweet this quote" target="_blank">
-            <svg class="btnIcon__icon">
+          <a :href="twitterUrl" class="btnIcon btnIcon--twitter" title="Tweet this quote" target="_blank">
+            <svg>
               <use xlink:href="#icon-twitter"/>
             </svg>
           </a>
-          <a type="button" v-on:click="getNewQuote" class="btnIcon btnIcon--primary" title="New quote">
-            <svg class="btnIcon__icon">
+          <a v-on:click="getNewQuote" class="btnIcon" title="New quote">
+            <svg>
               <use xlink:href="#icon-quote"/>
             </svg>
           </a>
           <a href="https://github.com/pando85/quotes-simple-web" class="btnIcon" title="Github">
-            <svg class="btnIcon__icon">
+            <svg>
               <use xlink:href="#icon-github"/>
             </svg>
           </a>
