@@ -1,6 +1,4 @@
 import aiohttp.web
-import asyncio
-
 
 from quotes.app import get_app
 from quotes.db import setup_db
