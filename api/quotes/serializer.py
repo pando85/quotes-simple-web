@@ -1,7 +1,10 @@
 import json
+from typing import Optional
+
+from quotes.quote import Quote
 
 
-def json_dump(response_json):
-    if '_id' in response_json:
-        del response_json['_id']
-    return json.dumps(response_json, ensure_ascii=False)
+def quote_to_json(quote: Optional[Quote]) -> str:
+    if not quote:
+        return "{'error': 'Not quote found'}"
+    return json.dumps({'author': quote.author, 'quote': quote.quote}, ensure_ascii=False)

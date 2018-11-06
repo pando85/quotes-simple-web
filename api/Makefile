@@ -37,6 +37,8 @@ lint:	## run pycodestyle
 lint: requirements_test
 	@echo Running linter
 	@${PYTHON} -m pycodestyle quotes test
+	@${PYTHON} -m flake8 quotes test
+	@${PYTHON} -m mypy --ignore-missing-imports quotes test
 
 test:	## run tests and show report
 test: lint init_db
