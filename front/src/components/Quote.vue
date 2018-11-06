@@ -12,27 +12,27 @@
       </symbol>
     </svg>
     <blockquote class="quoteBox">
-      <p class="text">{{ quote.quote }}</p>
+      <p class="text" name="quote">{{ quote.quote }}</p>
       <footer class="footer">
         <div class="footerCell footerCell--btnIcons">
-          <a :href="twitterUrl" class="btnIcon btnIcon--twitter" title="Tweet this quote" target="_blank">
+          <a :href="twitterUrl" class="btnIcon btnIcon--twitter" name="twitter" title="Tweet this quote" target="_blank">
             <svg>
               <use xlink:href="#icon-twitter"/>
             </svg>
           </a>
-          <a v-on:click="getNewQuote" class="btnIcon" title="New quote">
+          <a v-on:click="getNewQuote" class="btnIcon" name="new_quote" title="New quote">
             <svg>
               <use xlink:href="#icon-quote"/>
             </svg>
           </a>
-          <a href="https://github.com/pando85/quotes-simple-web" class="btnIcon" title="Github">
+          <a href="https://github.com/pando85/quotes-simple-web" class="btnIcon" name="github" title="Github">
             <svg>
               <use xlink:href="#icon-github"/>
             </svg>
           </a>
         </div>
         <div class="footerCell footerCell--author">
-          <p class="author">{{ quote.author }}</p>
+          <p class="author" name="author">{{ quote.author }}</p>
         </div>
       </footer>
     </blockquote>
