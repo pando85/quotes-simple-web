@@ -1,15 +1,13 @@
 import asyncio
 import functools
-import json
 import os
 import unittest
 
 from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop
 
 from quotes.app import get_app
-from quotes.config import QUOTES_FILE_PATH, AUDIO_DIR_PATH
+from quotes.config import QUOTES_FILE_PATH
 from quotes.db import load_db, mongo_connection, get_random_element
-from quotes.utils import add_audio_to_json
 
 
 async def setup_db_test(app):
@@ -17,8 +15,6 @@ async def setup_db_test(app):
     current_file_path = os.path.dirname(os.path.realpath(__file__))
     test_quotes_file_path = os.path.join(current_file_path, QUOTES_FILE_PATH)
     await load_db(app, test_quotes_file_path)
-    test_audio_dir_path = os.path.join(current_file_path, AUDIO_DIR_PATH)
-    await add_audio_to_json(app['db'], test_audio_dir_path)
 
 
 class DBTests(AioHTTPTestCase):
@@ -45,8 +41,9 @@ class DBTests(AioHTTPTestCase):
             return x + y
         result_success = functools.reduce(sum, results_list)
         result_success_rate = result_success / total_queries
-        assert (result_success_rate > success_rate - result_success_rate * range_rate)
-        assert (result_success_rate < success_rate + result_success_rate * range_rate)
+
+        assert (result_success_rate > success_rate - range_rate)
+        assert (result_success_rate < success_rate + range_rate)
 
 
 if __name__ == '__main__':

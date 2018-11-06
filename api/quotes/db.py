@@ -4,8 +4,8 @@ import motor.motor_asyncio
 import pymongo
 from typing import Optional
 
-from quotes.config import AUDIO_DIR_PATH, MONGO_URI, QUOTES_FILE_PATH
-from quotes.utils import add_audio_to_json, mongo_quote_to_quote
+from quotes.config import MONGO_URI, QUOTES_FILE_PATH
+from quotes.utils import dict_to_quote
 from quotes.logger import logger
 from quotes.quote import Quote
 
@@ -34,7 +34,6 @@ async def load_db(app: aiohttp.web.Application, path: str) -> None:
 async def setup_db(app: aiohttp.web.Application) -> None:
     await mongo_connection(app)
     await load_db(app, QUOTES_FILE_PATH)
-    await add_audio_to_json(app['db'], AUDIO_DIR_PATH)
 
 
 async def get_random_element(
@@ -44,5 +43,5 @@ async def get_random_element(
     pipeline.append(random_element)
     cursor = collection.aggregate(pipeline)
     while (await cursor.fetch_next):
-        return mongo_quote_to_quote(cursor.next_object())
+        return dict_to_quote(cursor.next_object())
     return None
