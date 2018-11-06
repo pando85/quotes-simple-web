@@ -1,0 +1,13 @@
+{
+  "name": "quotes-simple-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "chromedriver": "^2.43.1",
+    "geckodriver": "^1.12.2",
+    "nightwatch": "^0.9.21",
+    "selenium-server": "^3.141.0"
+  }
+}
