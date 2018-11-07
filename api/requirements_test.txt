@@ -4,3 +4,4 @@ pycodestyle
 coverage
 flake8
 mypy
+locust
