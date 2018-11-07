@@ -1,9 +1,9 @@
 from locust import HttpLocust, TaskSet, task
 
 class UserBehavior(TaskSet):
-    @task(2)
+    @task(1)
     def index(self):
-        self.client.get("/")
+        self.client.get("/quotes/random")
 
 class WebsiteUser(HttpLocust):
     task_set = UserBehavior
