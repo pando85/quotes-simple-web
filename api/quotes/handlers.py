@@ -15,6 +15,10 @@ async def author_handler(request: Request) -> Response:
     return response(quote_json)
 
 
+async def ping_handler(request: Request) -> Response:
+    return Response(body='"pong"', content_type='application/json')
+
+
 async def random_handler(request: Request) -> Response:
     db = request.app['db']
     quote_json = await get_random_element(db.quotes)
