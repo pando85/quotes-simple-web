@@ -9,8 +9,22 @@ Simple web server for serving quotes.
 
 Write your quotes in `./api/data/quotes.json` with [this format](https://github.com/pando85/quotes-simple-web/blob/master/api/test/data/quotes.json).
 
-Use docker-compose to deploy it:
+
+### Requirements:
+
+- docker
+- docker-compose
+
+### Run
 
 ```bash
-docker-compose up -d
+make run
+```
+
+### Tests
+
+End to end tests:
+
+```
+make test
 ```
