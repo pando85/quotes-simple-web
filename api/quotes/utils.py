@@ -6,10 +6,10 @@ T = TypeVar('T')
 
 
 def compose(*funcs: Any) -> Callable:
-    *rest, penultimate, last = funcs
+    first, second, *rest = funcs
     if rest:
-        penultimate = compose(*rest, penultimate)
-    return lambda *args, **kwargs: penultimate(last(*args, **kwargs))
+        second = compose(second, *rest)
+    return lambda *args, **kwargs: second(first(*args, **kwargs))
 
 
 def bind(f: Callable, x: Optional[T]) -> Optional[T]:
