@@ -1,4 +1,4 @@
-.PHONY: help requirements requirements_test destroy_db init_db lint test run
+.PHONY: help requirements requirements_test destroy_db init_db lint test run load_test
 
 VENV_BASE ?= .venv/quotes-simple-web
 VENV_ACTIVATE := $(VENV_BASE)/bin/activate
