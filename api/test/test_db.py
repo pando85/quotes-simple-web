@@ -1,26 +1,17 @@
 import asyncio
 import functools
-import os
 import unittest
 
 from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop
 
 from quotes.app import get_app
-from quotes.config import QUOTES_FILE_PATH
-from quotes.db import load_db, mongo_connection, get_random_quote
-
-
-async def setup_db_test(app):
-    await mongo_connection(app)
-    current_file_path = os.path.dirname(os.path.realpath(__file__))
-    test_quotes_file_path = os.path.join(current_file_path, QUOTES_FILE_PATH)
-    await load_db(app, test_quotes_file_path)
+from quotes.db import get_random_quote, setup_db
 
 
 class DBTests(AioHTTPTestCase):
 
     async def get_application(self):
-        return get_app(setup_db_test)
+        return get_app(setup_db)
 
     @unittest_run_loop
     async def test_get_random_quote(self):
