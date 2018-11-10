@@ -1,4 +1,4 @@
-.PHONY: help requirements requirements_test destroy_db init_db lint test run load_test
+.PHONY: help requirements requirements_test destroy_db init_db lint test run
 
 VENV_BASE ?= .venv/quotes-simple-web
 VENV_ACTIVATE := $(VENV_BASE)/bin/activate
@@ -49,7 +49,3 @@ test: lint init_db
 run:	## run project
 run: requirements init_db
 	${PYTHON} -m quotes
-
-load_test:	## run load tests
-load_test: run requirements_test
-	${PYTHON} -m locust --host=http://localhost:8080

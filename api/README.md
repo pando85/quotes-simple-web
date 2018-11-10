@@ -1,20 +1,13 @@
 # quotes
 
-Simple API for serving quotes of famous people.
+Simple API for serving quotes.
 
 ## Dev
 
 Run app:
 
 ```bash
-python -m quotes
-```
-
-
-Run mongo:
-
-```bash
-docker run -d --name mongo -e MONGO_INITDB_ROOT_USERNAME=test -e MONGO_INITDB_ROOT_PASSWORD=test1234 -p 27017:27017 mongo
+make run
 ```
 
 Connect mongo cli:
@@ -27,7 +20,20 @@ docker exec -it mongo mongo --authenticationDatabase "admin" -u test -p test1234
 
 Run tests:
 ```bash
-bash scripts/unit_tests.sh
+make test
+```
+
+## Load tests
+
+Run app:
+```bash
+make run
+```
+
+In another terminal:
+```bash
+make requirements_test
+locust --host=http://localhost:8080
 ```
 
 ### Production
