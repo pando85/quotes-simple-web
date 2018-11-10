@@ -32,8 +32,7 @@ make run
 
 In another terminal:
 ```bash
-make requirements_test
-locust --host=http://localhost:8080
+make load_test
 ```
 
 ### Production
