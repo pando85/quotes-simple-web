@@ -1,10 +1,12 @@
 import json
-from typing import Optional
+from functools import partial
 
 from quotes.quote import Quote
+from quotes.functools import bind
 
 
-def quote_to_json(quote: Optional[Quote]) -> str:
-    if not quote:
-        return '{"error": "Not quote found"}'
+def _quote_to_json(quote: Quote) -> str:
     return json.dumps({'author': quote.author, 'quote': quote.quote}, ensure_ascii=False)
+
+
+quote_to_json = partial(bind, _quote_to_json)
