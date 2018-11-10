@@ -49,3 +49,7 @@ test: lint init_db
 run:	## run project
 run: requirements init_db
 	${PYTHON} -m quotes
+
+load_test:	## run load tests
+load_test: run requirements_test
+	${PYTHON} -m locust --host=http://localhost:8080
