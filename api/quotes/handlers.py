@@ -1,19 +1,10 @@
 from aiohttp.web import Request, Response
 from typing import Optional
 
-from quotes.db import get_author_random_quote, get_random_quote
+from quotes.db import get_random_quote
 from quotes.functools import compose
 from quotes import logger
 from quotes.serializer import quote_to_json
-
-
-async def author_handler(request: Request) -> Response:
-    return await compose(
-        get_author_random_quote,
-        quote_to_json,
-        logger.debug,
-        return_response
-    )(request)
 
 
 async def ping_handler(request: Request) -> Response:

@@ -24,14 +24,6 @@ class RoutesTests(AioHTTPTestCase):
         quote = await request.json()
         assert ('author' and 'quote') in quote
 
-    def test_get_author_random_handler(self):
-        self.test_random_handler('/quotes/random/dennis%20ritchie')
-
-    @unittest_run_loop
-    async def test_fail_author_random_handler(self):
-        request = await self.client.request('GET', '/quotes/random/failauthorsearch')
-        assert request.status == 500
-
 
 if __name__ == '__main__':
     unittest.main()

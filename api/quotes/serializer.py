@@ -6,7 +6,8 @@ from quotes.functools import bind
 
 
 def _quote_to_json(quote: Quote) -> str:
-    return json.dumps({'author': quote.author, 'quote': quote.quote}, ensure_ascii=False)
+    return json.dumps(
+        {'audio': quote.audio, 'author': quote.author, 'quote': quote.quote}, ensure_ascii=False)
 
 
 quote_to_json = partial(bind, _quote_to_json)

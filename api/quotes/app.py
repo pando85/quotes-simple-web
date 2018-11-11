@@ -2,8 +2,8 @@ import aiohttp.web
 import aiohttp_cors
 from typing import Awaitable, Callable
 
-from quotes.handlers import author_handler, random_handler, ping_handler
-from quotes.config import CORS_ALLOW_ORIGIN
+from quotes.handlers import random_handler, ping_handler
+from quotes.config import AUDIO_ENDPOINT, AUDIOS_PATH, CORS_ALLOW_ORIGIN
 
 
 def get_app(setup_db: Callable[[aiohttp.web.Application], Awaitable[None]]
@@ -13,7 +13,7 @@ def get_app(setup_db: Callable[[aiohttp.web.Application], Awaitable[None]]
     app.add_routes([
         aiohttp.web.get('/ping', ping_handler),
         aiohttp.web.get('/quotes/random', random_handler),
-        aiohttp.web.get('/quotes/random/{author}', author_handler)
+        aiohttp.web.static(AUDIO_ENDPOINT, AUDIOS_PATH)
     ])
 
     cors = aiohttp_cors.setup(app, defaults={
