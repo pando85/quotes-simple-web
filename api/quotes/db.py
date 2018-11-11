@@ -1,13 +1,12 @@
 import aiohttp
 from aiohttp.web import Request
-import json
 import motor.motor_asyncio
 import pymongo
 from typing import Dict, List, Optional
 
-from quotes.config import MONGO_URI, QUOTES_FILE_PATH
-from quotes.utils import dict_to_quote
-from quotes.logger import logger
+from quotes.config import MONGO_URI, QUOTES_PATH
+from quotes.utils import dict_from_transcript, quote_from_dict, list_files_in_directory, read_file
+from quotes import logger
 from quotes.quote import Quote
 
 MongoQuery = List[Dict]
@@ -26,9 +25,9 @@ async def mongo_connection(app: aiohttp.web.Application) -> None:
 async def load_db(app: aiohttp.web.Application, path: str) -> None:
     logger.debug('Remove database collection')
     await app['db'].quotes.drop()
-    with open(path) as f:
-        data = json.load(f)
-    logger.debug(f'Insert quotes from file `{path}`')
+
+    logger.debug(f'Insert quotes from path `{path}`')
+    data = [dict_from_transcript(read_file(file)) for file in list_files_in_directory(path)]
     await app['db'].quotes.insert_many(data)
     logger.debug('Create index by author')
     await app['db'].quotes.create_index([('author', pymongo.TEXT)])
@@ -36,7 +35,7 @@ async def load_db(app: aiohttp.web.Application, path: str) -> None:
 
 async def setup_db(app: aiohttp.web.Application) -> None:
     await mongo_connection(app)
-    await load_db(app, QUOTES_FILE_PATH)
+    await load_db(app, QUOTES_PATH)
 
 
 async def get_author_random_quote(request: Request) -> Optional[Quote]:
@@ -66,5 +65,5 @@ async def query_db(
         pipeline: MongoQuery) -> Optional[Quote]:
     cursor = db.quotes.aggregate(pipeline)
     while (await cursor.fetch_next):
-        return dict_to_quote(cursor.next_object())
+        return quote_from_dict(cursor.next_object())
     return None
