@@ -38,13 +38,6 @@ async def setup_db(app: aiohttp.web.Application) -> None:
     await load_db(app, QUOTES_PATH)
 
 
-async def get_author_random_quote(request: Request) -> Optional[Quote]:
-    author = request.match_info['author']
-    query = get_query_filter_author(author)
-    query += get_query_random()
-    return await query_db(request.app['db'], query)
-
-
 async def get_random_quote(request: Request) -> Optional[Quote]:
     query = get_query_random()
     return await query_db(request.app['db'], query)

@@ -10,6 +10,7 @@ DATA_PATH: str = os.environ.get('DATA_PATH', 'test/data')
 AUDIOS_PATH: str = os.environ.get('AUDIOS_PATH', f'{DATA_PATH}/audios')
 QUOTES_PATH: str = os.environ.get('QUOTES_PATH', f'{DATA_PATH}/transcripts')
 
+AUDIO_ENDPOINT: str = os.environ.get('AUDIO_ENDPOINT', '/audio')
 QUOTES_AUTHOR: str = os.environ.get('QUOTES_AUTHOR', 'Unknown')
 
 CORS_ALLOW_ORIGIN: str = os.environ.get('CORS_ALLOW_ORIGIN', '*')

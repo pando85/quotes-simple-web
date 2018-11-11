@@ -1,20 +1,21 @@
 import pathlib
 import json
 
-from quotes.config import QUOTES_AUTHOR
+from quotes.config import AUDIO_ENDPOINT, QUOTES_AUTHOR
 from quotes.quote import Quote
 from quotes import logger
 
 
 def dict_from_transcript(transcript: dict) -> dict:
-    quote_json = {'author': QUOTES_AUTHOR,
-                  'quote': transcript['results']['transcripts'][0]['transcript'],
-                  'audio': transcript['jobName']}
+    quote_json = {'audio': f'{AUDIO_ENDPOINT}/{transcript["jobName"]}',
+                  'author': QUOTES_AUTHOR,
+                  'quote': transcript['results']['transcripts'][0]['transcript']}
     return quote_json
 
 
 def quote_from_dict(_dict: dict) -> Quote:
-    quote_json = {'author': _dict['author'],
+    quote_json = {'audio': _dict['audio'],
+                  'author': _dict['author'],
                   'quote': _dict['quote']}
     return Quote(**quote_json)
 
@@ -29,4 +30,3 @@ def read_file(path):
     with open(path) as f:
         data = json.load(f)
     return data
-
