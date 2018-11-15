@@ -1,15 +1,15 @@
 import pathlib
 import json
 
-from quotes.config import AUDIO_ENDPOINT, QUOTES_AUTHOR
+from quotes.config import AUDIO_ENDPOINT, QUOTES_AUTHOR, QUOTES_AUDIO_KEY, QUOTES_TRANSCRIPT_KEY
 from quotes.quote import Quote
 from quotes import logger
 
 
 def dict_from_transcript(transcript: dict) -> dict:
-    quote_json = {'audio': f'{AUDIO_ENDPOINT}/{transcript["jobName"]}',
+    quote_json = {'audio': f'{AUDIO_ENDPOINT}/{eval(f"transcript{QUOTES_AUDIO_KEY}")}',
                   'author': QUOTES_AUTHOR,
-                  'quote': transcript['results']['transcripts'][0]['transcript']}
+                  'quote': eval(f'transcript{QUOTES_TRANSCRIPT_KEY}')}
     return quote_json
 
 
