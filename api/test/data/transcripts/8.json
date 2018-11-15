@@ -1,8 +1,4 @@
 {
-  "jobName": "test.mp3",
-  "results":{
-    "transcripts":[{
-      "transcript":"empty test quote - 8"
-      }]
-  }
+  "audio": "test.mp3",
+  "transcript": "empty test quote - 8"
 }

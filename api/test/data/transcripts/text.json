@@ -1,8 +1,4 @@
 {
-  "jobName": "test.mp3",
-  "results":{
-    "transcripts":[{
-      "transcript":"UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity."
-      }]
-  }
+  "audio": "test.mp3",
+  "transcript": "UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity."
 }
