@@ -1,5 +1,5 @@
 <template>
-  <v-touch v-on:swipeleft="getNewQuote" v-bind:swipe-options="{ direction:'horizontal', threshold: 50 }" class="quote">
+  <v-touch v-on:swipeleft="getNewQuote" v-on:swiperight="getNewQuote" v-bind:swipe-options="{ direction:'horizontal', threshold: 50 }" class="quote">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="sr-only">
       <symbol id="icon-play" viewBox="4 4 24 24" transform="scale(1.5)">
         <path d="M8 5v14l11-7z"/>
