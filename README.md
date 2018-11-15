@@ -7,8 +7,11 @@ Simple web server for serving quotes.
 
 ## Deployment
 
-Write your quotes in `./api/data/quotes.json` with [this format](https://github.com/pando85/quotes-simple-web/blob/master/api/test/data/quotes.json).
+You will need data with this schema:
+  - audio quote files in `AUDIOS_PATH`
+  - json with quote files in `QUOTES_PATH`
 
+Quote files must have [this format](https://github.com/pando85/quotes-simple-web/blob/master/api/test/data/transcripts/1.json).
 
 ### Requirements:
 

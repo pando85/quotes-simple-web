@@ -14,11 +14,12 @@ services:
     environment:
       - CORS_ALLOW_ORIGIN=http://localhost
       - MONGO_URI=mongodb://test:test1234@database:27017
-      - QUOTES_FILE_PATH=/data/quotes.json
+      - DATA_PATH=/data/
+      - QUOTES_AUTHOR=unknown
     ports:
       - "8080:8080"
     volumes:
-      - ./api/test/data/quotes.json:/data/quotes.json:ro
+      - ./api/test/data/:/data/:ro
     links:
       - database
 
