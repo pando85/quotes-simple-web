@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/pando85/quotes-simple-web.svg?branch=master)](https://travis-ci.org/pando85/quotes-simple-web)
+# quotes-simple-web [![Build Status](https://travis-ci.org/pando85/quotes-simple-web.svg?branch=master)](https://travis-ci.org/pando85/quotes-simple-web) [![Docker:build](https://img.shields.io/docker/build/pando85/quotes-simple-web.svg)](https://hub.docker.com/r/pando85/quotes-simple-web/) [![License: GPL v3+](https://img.shields.io/badge/License-GPL%20v3%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# quotes-simple-web
+[![Code Climate](https://codeclimate.com/github/pando85/quotes-simple-web/badges/gpa.svg)](https://codeclimate.com/github/pando85/quotes-simple-web)  [![LGTM JS](https://img.shields.io/lgtm/grade/javascript/g/pando85/quotes-simple-web.svg?logo=lgtm)](https://lgtm.com/projects/g/pando85/quotes-simple-web/context:javascript) [![LGTM PYTHON](https://img.shields.io/lgtm/grade/python/g/pando85/quotes-simple-web.svg?logo=lgtm)](https://lgtm.com/projects/g/pando85/quotes-simple-web/context:python)
 
 Simple web server for serving quotes.
 
