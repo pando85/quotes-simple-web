@@ -16,7 +16,10 @@ def compose(*funcs: Any) -> Callable:
         async def _async(*args, **kwargs):
             return second(await first(*args, **kwargs))
         return _async
-    return lambda *args, **kwargs: second(first(*args, **kwargs))
+
+    def _func(*args, **kwargs):
+        return second(first(*args, **kwargs))
+    return _func
 
 
 def bind(f: Callable, x: Optional[T]) -> Any:
