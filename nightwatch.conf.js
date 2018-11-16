@@ -1,7 +1,6 @@
 const seleniumServer = require("selenium-server");
 const chromedriver = require("chromedriver");
 const geckodriver = require("geckodriver");
-const SCREENSHOT_PATH = "./screenshots/";
 
 module.exports = {
   "src_folders": [
