@@ -13,21 +13,9 @@ services:
     restart: unless-stopped
     environment:
       - CORS_ALLOW_ORIGIN=http://localhost
-      - MONGO_URI=mongodb://test:test1234@database:27017
       - DATA_PATH=/data/
       - QUOTES_AUTHOR=unknown
     ports:
       - "8080:8080"
     volumes:
       - ./api/test/data/:/data/:ro
-    links:
-      - database
-
-  database:
-    image: mongo:4.1-xenial
-    restart: unless-stopped
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=test
-      - MONGO_INITDB_ROOT_PASSWORD=test1234
-    expose:
-      - "27017"

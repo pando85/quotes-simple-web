@@ -10,12 +10,6 @@ Run app:
 make run
 ```
 
-Connect mongo cli:
-
-```bash
-docker exec -it mongo mongo --authenticationDatabase "admin" -u test -p test1234
-```
-
 ## Tests
 
 Run tests:

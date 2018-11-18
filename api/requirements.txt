@@ -7,4 +7,3 @@ chardet==3.0.4
 idna==2.7
 multidict==4.4.2
 yarl==1.2.6
-motor==2.0.0
