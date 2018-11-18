@@ -23,16 +23,6 @@ requirements_test: requirements
 	@echo Install test requirements
 	@${PYTHON} -m pip install -r requirements_test.txt > /dev/null
 
-destroy_db:	## destroy docker database
-	@echo Destroy mongo
-	@docker rm -f mongo > /dev/null || echo Not mongo running
-
-init_db:	## create docker database
-init_db: destroy_db
-	@echo Starting mongo
-	@docker run -d --name mongo -e MONGO_INITDB_ROOT_USERNAME=test \
-	-e MONGO_INITDB_ROOT_PASSWORD=test1234 -p 27017:27017 mongo > /dev/null
-
 lint:	## run pycodestyle
 lint: requirements_test
 	@echo Running linter
@@ -41,15 +31,15 @@ lint: requirements_test
 	@${PYTHON} -m mypy --ignore-missing-imports quotes test
 
 test:	## run tests and show report
-test: lint init_db
+test: lint
 	@echo Running tests
 	@${PYTHON} -m coverage run -m unittest discover
 	@${PYTHON} -m coverage report -m
 
 load_test:	## run load tests
 load_test: requirements_test
-	${PYTHON} -m locust --host=http://localhost:8080 -c 500 -r 20 -t 30s --no-web
+	${VENV_BASE}/bin/locust --host=http://localhost:8080 -c 2500 -r 100 -t 30s --no-web
 
 run:	## run project
-run: requirements init_db
+run: requirements
 	${PYTHON} -m quotes
