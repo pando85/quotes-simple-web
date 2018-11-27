@@ -47,6 +47,7 @@ import store from '@/store.ts';
 @Component
 export default class Quote extends Vue {
   public store!: object;
+  private lastAudio!: HTMLAudioElement;
 
   get quote() {
     return this.$store.state.quote;
@@ -65,7 +66,12 @@ export default class Quote extends Vue {
   }
 
   private playAudio(event: Event): void {
-    new Audio(`${this.apiUrl}${this.quote.audio}`).play();
+    if (this.lastAudio) {
+      this.lastAudio.pause();
+      this.lastAudio.currentTime = 0;
+    }
+    this.lastAudio = new Audio(`${this.apiUrl}${this.quote.audio}`);
+    this.lastAudio.play();
   }
 
   private getNewQuote(event: Event): void {
