@@ -61,7 +61,7 @@ jobs:
       install:
         - skip
       script:
-        - xvfb-run make test
+        - xvfb-run -a make test
     - stage: dockerhub-build
       install: skip
       script:
