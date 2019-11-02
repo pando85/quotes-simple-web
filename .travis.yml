@@ -8,7 +8,6 @@ python:
   - '3.6'
 services:
   - docker
-  - xvfb
 
 # Only execute travis in master or PR to master
 branches:
@@ -61,7 +60,7 @@ jobs:
       install:
         - skip
       script:
-        - xvfb-run -a make test
+        - make test
     - stage: dockerhub-build
       install: skip
       script:
