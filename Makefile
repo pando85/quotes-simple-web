@@ -13,6 +13,7 @@ run: build
 
 test:	## run end to end tests
 test: run
+	until curl -k http://localhost:8080/ping ; do date; sleep 1; echo ""; ip a; ss -nlpt; docker-compose logs --no-color; docker-compose ps; docker-compose ps; docker ps -a; done
 	npm install
 	./node_modules/.bin/nightwatch -e chrome,firefox
 	docker-compose down
