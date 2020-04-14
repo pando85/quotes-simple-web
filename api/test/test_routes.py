@@ -23,6 +23,9 @@ class RoutesTests(AioHTTPTestCase):
         assert request.status == 200
         quote = await request.json()
         assert ('author' and 'quote') in quote
+        print(request.headers)
+        assert ('Cache-Control' in request.headers and
+                request.headers['Cache-Control'] == 'no-cache')
 
 
 if __name__ == '__main__':

@@ -18,7 +18,7 @@ stages:
   - name: "[backend] update-dependencies"
     if: branch = master AND type != pull_request
   - name: "[frontend] unit test"
-  - name: "end to end tests"
+ #- name: "end to end tests"
   - name: dockerhub-build
     if: branch = master AND type != pull_request
 
@@ -55,15 +55,6 @@ jobs:
       script:
         - npm run lint
         - npm run test:unit
-    - stage: "end to end tests"
-      install:
-        - skip
-      before_script:
-        - "export DISPLAY=:99.0"
-        - "sh -e /etc/init.d/xvfb start"
-        - sleep 3
-      script:
-        - make test
     - stage: dockerhub-build
       install: skip
       script:
