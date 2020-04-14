@@ -28,4 +28,9 @@ def return_response(_json: Optional[str]) -> Response:
     if not _json:
         msg = '{"error": "Not quote found"}'
         status_code = 500
-    return Response(body=msg, content_type='application/json', status=status_code)
+    return Response(
+        body=msg,
+        content_type='application/json',
+        headers={'Cache-Control': 'no-cache'},
+        status=status_code,
+    )
