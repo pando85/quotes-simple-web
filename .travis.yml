@@ -1,12 +1,15 @@
 ---
+sudo: true
+dist: bionic
 
 language: python
 addons:
   chrome: stable
   firefox: latest
 python:
-  - '3.6'
-services: docker
+  - '3.7'
+services:
+  - docker
 
 # Only execute travis in master or PR to master
 branches:
@@ -55,6 +58,14 @@ jobs:
       script:
         - npm run lint
         - npm run test:unit
+    - stage: "end to end tests"
+      before_install:
+        - echo '{"ipv6":false}' | sudo tee /etc/docker/daemon.json
+        - sudo service docker restart
+      install:
+        - skip
+      script:
+        - make test
     - stage: dockerhub-build
       install: skip
       script:

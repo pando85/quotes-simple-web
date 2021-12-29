@@ -32,14 +32,20 @@ module.exports = {
     "chrome": {
       "desiredCapabilities": {
         "browserName": "chrome",
-        "javascriptEnabled": true
+        "javascriptEnabled": true,
+        "chromeOptions" : {
+          "args" : ["headless", "no-sandbox", "disable-gpu"]
+        }
       }
     },
     "firefox": {
       "desiredCapabilities": {
         "browserName": "firefox",
         "javascriptEnabled": true,
-        "marionette": true
+        "marionette": true,
+        "moz:firefoxOptions": {
+          "args": ["--headless"]
+        }
       }
     }
   }
