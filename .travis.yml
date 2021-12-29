@@ -21,7 +21,7 @@ stages:
   - name: "[backend] update-dependencies"
     if: branch = master AND type != pull_request
   - name: "[frontend] unit test"
-  - name: "end to end tests"
+ #- name: "end to end tests"
   - name: dockerhub-build
     if: branch = master AND type != pull_request
 
