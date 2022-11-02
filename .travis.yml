@@ -7,7 +7,7 @@ addons:
   chrome: stable
   firefox: latest
 python:
-  - '3.7'
+  - '3.10'
 services:
   - docker
 
@@ -18,10 +18,10 @@ branches:
 
 stages:
   - name: "[backend] unit tests"
-  - name: "[backend] update-dependencies"
-    if: branch = master AND type != pull_request
-  - name: "[frontend] unit test"
- #- name: "end to end tests"
+  #- name: "[backend] update-dependencies"
+  #  if: branch = master AND type != pull_request
+  #- name: "[frontend] unit test"
+  #- name: "end to end tests"
   - name: dockerhub-build
     if: branch = master AND type != pull_request
 
