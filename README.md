@@ -31,3 +31,15 @@ End to end tests:
 ```
 make test
 ```
+
+### Build arm64 images
+
+```bash
+cd api
+docker buildx build --platform linux/amd64,linux/arm64 -t pando85/quotes-simple-web-api:latest .
+git apply arm64.patch
+cd front
+npm install
+npm run build
+docker buildx build --platform linux/amd64,linux/arm64 -t pando85/quotes-simple-web-front:latest .
+```
