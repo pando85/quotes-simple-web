@@ -10,7 +10,7 @@ help:
 
 venv:	## create virtualenv
 	@if [ ! -d "$(VENV_BASE)" ]; then \
-		virtualenv -p python3 $(VENV_BASE); \
+		python3 -m venv $(VENV_BASE); \
 	fi
 
 requirements:	## install requirements
