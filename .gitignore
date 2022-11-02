@@ -1,5 +1,6 @@
 .vscode
 .env
+.envrc
 node_modules/
 reports/
 selenium-debug.log
